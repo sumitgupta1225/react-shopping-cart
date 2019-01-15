@@ -1,14 +1,28 @@
-import React, { Component } from 'react';
+import React, { Component,Fragment } from 'react';
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 //import logo from './logo.svg';
 import './App.css';
 import ShoppingCart from './components/ShoppingCart'
-
+import Nav from './components/Nav'
+import NoMatch from './components/NoMatch'
+import Home from './components/Home'
+import ContactUs from './components/ContactUs'
 class App extends Component {
   render() {
     return (
-      <div>
-        <ShoppingCart/>
-      </div>
+      <BrowserRouter>
+        <Fragment>
+          <Nav/>
+          <div className='container'>
+            <Switch>
+              <Route path='/' exact component={Home}/>
+              <Route path='/shopping-cart' component={ShoppingCart}/>
+              <Route path='/contact-us' component={ContactUs}/> 
+              <Route component={NoMatch}/>
+            </Switch>
+          </div>
+        </Fragment>          
+      </BrowserRouter>
     );
   }
 }
